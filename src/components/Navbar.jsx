@@ -1,21 +1,30 @@
+// src/components/Navbar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="bg-white shadow-md p-4 sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Use Link for internal navigation */}
+      <div className="container mx-auto flex justify-between items-center flex-wrap">
         <Link to="/" className="text-2xl font-bold text-gray-800">
           EstateFlow
         </Link>
-        <div className="flex items-center space-x-6">
-          {/* Update NavLink to use Link as well for consistency */}
+        {/*
+          Refined spacing:
+          - gap-y-3: More vertical space when items wrap (12px)
+          - gap-x-4: Default horizontal space between items (16px)
+          - sm:gap-x-6: Larger horizontal space for small screens and up (24px)
+          - mt-2 sm:mt-0: Margin top for wrapped items on mobile
+        */}
+        <div className="flex flex-wrap justify-center sm:justify-end items-center gap-y-3 gap-x-4 sm:gap-x-6 mt-2 sm:mt-0">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/properties">Properties</NavLink> {/* Assuming you'll create a /properties page later */}
-          <NavLink to="/how-it-works">About Us</NavLink> {/* Or change this to /about */}
-          {/* Changed 'a' tag to Link for internal routing */}
-          <Link to="/contact" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out">
+          <NavLink to="/properties">Properties</NavLink>
+          <NavLink to="/how-it-works">About Us</NavLink>
+          <Link to="/contact" className="
+            bg-blue-600 text-white px-4 py-2 rounded-md
+            hover:bg-blue-700 transition duration-300 ease-in-out
+            whitespace-nowrap
+          ">
             Contact
           </Link>
         </div>
@@ -24,12 +33,13 @@ const Navbar = () => {
   );
 };
 
-// Helper component for animated links - updated to use Link internally
-const NavLink = ({ to, children }) => ( // Changed 'href' prop to 'to'
-  <Link to={to} className=" // Use Link here
+// Helper component for animated links
+const NavLink = ({ to, children }) => (
+  <Link to={to} className="
     relative text-gray-600 hover:text-gray-900 py-1
     group
     text-lg font-medium
+    whitespace-nowrap
   ">
     {children}
     <span className="
